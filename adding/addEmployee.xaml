@@ -1,0 +1,45 @@
+﻿<Window x:Class="доставка.adding.addEmployee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:доставка.adding"
+        mc:Ignorable="d"
+        Title="addEmployee" Height="450" Width="540" ResizeMode="NoResize" Background="#a79a92" Icon="/images/иконка.png">
+    <Grid>
+        <Viewbox>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock TextAlignment="Right" Margin="5,0" Width="100">Фамилия</TextBlock>
+                <TextBox x:Name="tbLName" Width="200" Text="{Binding LName}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock TextAlignment="Right" Margin="5,0" Width="100">Имя</TextBlock>
+                <TextBox x:Name="tbFName" Width="200" Text="{Binding FName}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock TextAlignment="Right" Margin="5,0" Width="100">Отчество</TextBlock>
+                <TextBox Width="200" Text="{Binding Patronymic}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock TextAlignment="Right" Margin="5,0" Width="100">Дата рождения</TextBlock>
+                <TextBox x:Name="tbBerthday" Width="200" Text="{Binding Berthday}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock TextAlignment="Right" Margin="5,0" Width="100">Банковская карта</TextBlock>
+                <TextBox x:Name="tbCard" Width="200" Text="{Binding Bank_card}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock TextAlignment="Right" Margin="5,0" Width="100">Должность</TextBlock>
+                <ComboBox IsEditable="True" Name="cbJobPosition" SelectedValuePath="ID_position" SelectedValue="{Binding ID_Position}" DisplayMemberPath="Name" Width="200"></ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock TextAlignment="Right" Margin="5,0" Width="100">Филиал</TextBlock>
+                <ComboBox IsEditable="True" Name="cbBranch" SelectedValuePath="ID_branch" SelectedValue="{Binding ID_Branch}" DisplayMemberPath="Adress" Width="200"></ComboBox>
+            </StackPanel>
+            <Button Width="70" Content="Сохранить" Click="Button_Click" HorizontalAlignment="Right" Margin="5"/>
+            <Button Width="70" Content="Закрыть" Click="Button_Click_1" HorizontalAlignment="Right" Margin="5"/>
+        </StackPanel>
+        </Viewbox>
+    </Grid>
+</Window>

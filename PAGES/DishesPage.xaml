@@ -1,0 +1,133 @@
+﻿<Page x:Class="доставка.PAGES.DishesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:доставка.PAGES"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DishesPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="53*"></RowDefinition>
+            <RowDefinition Height="333*"></RowDefinition>
+            <RowDefinition Height="53*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBox x:Name="seek" Grid.Row="0" TextChanged="TextBox_TextChanged" Margin="603,10,35,25.4">
+            <TextBox.ToolTip>
+                <ToolTip>
+                    Поиск по названию
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
+        <TextBlock Text="Поиск" Name="tbSearch" Grid.Row="0" Margin="609,11,153,24.4"></TextBlock>
+        <ComboBox Background="White" Name="cbCategory" DisplayMemberPath="Name" Grid.Row="0"  Margin="462,8,214,22.4" SelectionChanged="cbType_Selected"></ComboBox>
+        <TextBlock Text="Категория" Name="tbCategory" Grid.Row="0" Margin="468,9,273,26.4"/>
+        <Button Click="CategorySortReset" HorizontalAlignment="Left" Height="18" Margin="776,11,0,0" VerticalAlignment="Top" Width="20" Background="Transparent" BorderBrush="Transparent">
+            <Image Source="/images/reset.png" Height="15"/>
+            <Button.ToolTip>
+                <ToolTip>
+                    Сброс фильтров
+                </ToolTip>
+            </Button.ToolTip>
+
+        </Button>
+
+
+
+
+        <ListView Background="#fff6f1" MaxWidth="670" x:Name="dgpizza" Margin="0,54,122,0.2" Grid.RowSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Center"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border  Margin="3" BorderThickness="1">
+                        <StackPanel Width="250" Height="220">
+                            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" >
+                                <Button Width="15" Name="btnEdit" Click="btnEdit_Click" Background="Transparent" BorderBrush="Transparent">
+                                    <Image Source="/images/лупа.png" Height="15"/>
+                                    <Button.ToolTip>
+                                        <ToolTip>
+                                            Подробнее/Изменить запись
+                                        </ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
+                                <Button Width="15" x:Name="btnDelete" Click="btnDelete_Click" Background="Transparent" BorderBrush="Transparent">
+                                    <Image Source="/images/крестик.png" Height="15"/>
+                                    <Button.ToolTip>
+                                        <ToolTip>
+                                            Удалить запись
+                                        </ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
+                            </StackPanel>
+                            <Image x:Name="dishfoto" Width="150" Height="150" Source="{Binding foto}"/>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Category.Name}"></TextBlock>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Name}"></TextBlock>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Price, StringFormat={} {0:F0} ₽}"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Name="btRaport" Height="30" Width="120" Click="Excel_CClick" Margin="676,265.6,4,45.2" Grid.Row="1">
+            <Button.ToolTip>
+                <ToolTip>
+                    Оформить отчет о популярности блюд
+                </ToolTip>
+            </Button.ToolTip>Отчет</Button>
+        <Button Height="30" Width="120" Click="add_click" Margin="676,300.6,4,10.2" Grid.Row="1">Добавить
+            <Button.ToolTip>
+                <ToolTip>
+                    Добавить запись о новом блюде
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+        <StackPanel Orientation="Horizontal" Height="35" Grid.Row="2">
+            <Button Width="25" Height="30" Click="GoToFirstPage" Content="&lt;&lt;">
+                <Button.ToolTip>
+                    <ToolTip>
+                        Первая страница
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button Width="25" Height="30" Click="GoToPreviousPage" Content="&lt;">
+                <Button.ToolTip>
+                    <ToolTip>
+                        Предыдущая страница
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <TextBox Name="TxtCurrentPage" Height="30" Width="27" Margin="0,3,0,2.2">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        Текущая страница
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
+            <Label x:Name="LblTotalPages" Height="30" Content=""/>
+            <Button Width="25" Height="30" Click="GoToNextPage" Content="&gt;">
+                <Button.ToolTip>
+                    <ToolTip>
+                        Следующая страница
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button Width="25" Height="30" Click="GoToLastPage" Content="&gt;&gt;">
+                <Button.ToolTip>
+                    <ToolTip>
+                        Последняя страница
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Page>

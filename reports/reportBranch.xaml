@@ -1,0 +1,31 @@
+﻿<Page x:Class="доставка.reports.reportBranch"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:доставка.reports"
+      xmlns:charts="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="reportBranch">
+
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical" Width="200">
+                <Button Height="30" Width="120" Click="Excel_Click" Margin="5">Отчет</Button>
+                <Button Height="30" Width="120" Click="Button_Click" Content="Диаграмма" Margin="5"/>
+            </StackPanel>
+            <WindowsFormsHost HorizontalAlignment="Left" Height="430"  VerticalAlignment="Top" Width="620">
+                <charts:Chart x:Name="chartBranches">
+                    <charts:Chart.Legends>
+                        <charts:Legend>
+
+                        </charts:Legend>
+                    </charts:Chart.Legends>
+                </charts:Chart>
+            </WindowsFormsHost>
+
+        </StackPanel>
+    </Grid>
+
+</Page>

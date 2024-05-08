@@ -1,0 +1,95 @@
+﻿<Window x:Class="доставка.adding.addOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:доставка.adding"
+        mc:Ignorable="d"
+        Title="addOrder" Height="450" Width="850" ResizeMode="NoResize" Background="#a79a92" Icon="/images/иконка.png">
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="0,19,476.6,152">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock TextAlignment="Right" Width="87" Margin="0,0,10,0">Клиент</TextBlock>
+                    <ComboBox IsEditable="True" Name="cbClient" SelectedValuePath="ID_Client" SelectedValue="{Binding ID_Client}" DisplayMemberPath="FullName" Width="200"></ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock TextAlignment="Right" Width="87" Margin="0,0,10,0">Способ оплаты</TextBlock>
+                    <ComboBox IsEditable="True" Name="cbPaymendMethod" SelectedValuePath="ID_PaymentMethod" SelectedValue="{Binding ID_PaymentMethod}" DisplayMemberPath="Name" Width="200"></ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock TextAlignment="Right" Width="87" Margin="0,0,10,0">Статус</TextBlock>
+                    <ComboBox IsEditable="True" Name="cbStatus" SelectedValuePath="ID_Status" SelectedValue="{Binding ID_Status}" DisplayMemberPath="Name" Width="200"></ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock TextAlignment="Right" Width="87" Margin="0,0,10,0">Филиал</TextBlock>
+                    <ComboBox IsEditable="True" Name="cbBranch" SelectedValuePath="ID_branch" SelectedValue="{Binding ID_Branch}" DisplayMemberPath="Adress" Width="200"></ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock TextAlignment="Right" Width="87" Margin="0,0,10,0">Дата</TextBlock>
+                    <TextBox x:Name="tbdate" Width="200" Text="{Binding Date}"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock TextAlignment="Right" Width="87" Margin="0,0,10,0">Стоимость</TextBlock>
+                    <TextBox Width="200" Text="{Binding Price, StringFormat={} {0:F0}}"></TextBox>
+                </StackPanel>
+                <Button Width="70" Content="Сохранить" Click="Button_Click" HorizontalAlignment="Right" Margin="5"/>
+                <Button Width="70" Content="Закрыть" Click="Button_Click_1" HorizontalAlignment="Right" Margin="5"/>
+            </StackPanel>
+        <DataGrid Background="#fff6f1" RowBackground="#fff6f1" IsReadOnly="False" Name="dgOrderedDishes" AutoGenerateColumns="False" Margin="412,52,9.6,189">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Блюдо" Binding="{Binding dishName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Count}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Стоимость" Binding="{Binding price}"></DataGridTextColumn>
+
+                <DataGridTemplateColumn Width="30">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="25" Name="btnMinus" Click="btnMinus_Click" Background="Transparent" Content="-" Foreground="Black" BorderBrush="Transparent">
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Уменьшить кол-во
+                                    </ToolTip>
+                                </Button.ToolTip>
+
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="30">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="25" Name="btnPlus" Click="btnPlus_Click" Background="Transparent" Content="+" Foreground="Black" BorderBrush="Transparent">
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Увеличить кол-во
+                                    </ToolTip>
+                                </Button.ToolTip>
+
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Добавить блюдо" Margin="636,19,13.6,373" Click="Button_Click_2"/>
+        <DataGrid Background="#fff6f1" RowBackground="#fff6f1" x:Name="dgOrderEmployees" AutoGenerateColumns="False" Margin="412,288,9.6,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Сотрудник" Binding="{Binding FullName}"/>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Job}"/>
+
+                <DataGridTemplateColumn Width="30">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="25" Name="btnRemove" Click="btnRemove_Click" Background="Transparent" BorderBrush="Transparent">
+                                <Image Height="15" Source="/images/крестик.png"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Назначить сотрудника" Margin="636,255,13.6,137" Click="Button_Click_3"/>
+
+    </Grid>
+</Window>

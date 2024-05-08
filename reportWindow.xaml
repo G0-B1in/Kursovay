@@ -1,0 +1,19 @@
+﻿<Window x:Class="доставка.reportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:доставка"
+        mc:Ignorable="d"
+        Title="Отчет" Height="450" Width="500" Icon="/images/иконка.png">
+    <Grid  Background="#a79a92">
+            <Frame x:Name="frame" Margin="0,57,-0.4,0" />
+            <ComboBox Name="cbReports" HorizontalAlignment="Left" Margin="28,10,0,0" VerticalAlignment="Top" Width="190" SelectionChanged="cbReports_SelectionChanged">
+                <ComboBoxItem>Заказы по статусу</ComboBoxItem>
+                <ComboBoxItem>Кол-во заказов сотрудников</ComboBoxItem>
+                <ComboBoxItem>Клиенты</ComboBoxItem>
+                <ComboBoxItem>Выручка</ComboBoxItem>
+                <ComboBoxItem>Популярность блюд</ComboBoxItem>
+            </ComboBox>
+        </Grid>
+</Window>

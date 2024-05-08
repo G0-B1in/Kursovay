@@ -1,0 +1,134 @@
+﻿<Page x:Class="доставка.PAGES.EmployeePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:доставка.PAGES"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Employee">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="53*"></RowDefinition>
+            <RowDefinition Height="333*"></RowDefinition>
+            <RowDefinition Height="53*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+
+        <DataGrid Background="#fff6f1" RowBackground="#fff6f1" MaxWidth="670" x:Name="dgpizza"  IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="auto" Margin="0,54,122,0.2" Grid.RowSpan="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="auto" Header="ФИО" Binding="{Binding FullName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата рождения" Binding="{Binding Berthday}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Job_Position.Name}"></DataGridTextColumn>
+
+                <DataGridTemplateColumn Width="15">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="15" Name="btnEdit" Click="btnEdit_Click" Background="Transparent" BorderBrush="Transparent">
+                                <Image Source="/images/лупа.png" Height="15"/>
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Подробнее/Изменить запись
+                                    </ToolTip>
+                                </Button.ToolTip>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="15">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="15" Name="btnDelete" Click="btnDelete_Click" Background="Transparent" BorderBrush="Transparent">
+                                <Image Source="/images/крестик.png" Height="15"/>
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Удалить запись
+                                    </ToolTip>
+                                </Button.ToolTip>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBox x:Name="seek" Grid.Row="0" TextChanged="TextBox_TextChanged" Margin="603,10,35,25.4">
+            <TextBox.ToolTip>
+                <ToolTip>
+                    Поиск по ФИО
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
+        <TextBlock Text="Поиск" Name="tbSearch" Grid.Row="0" Margin="609,10,153,25.4"/>
+        <ComboBox Background="White" x:Name="cbBranch" DisplayMemberPath="Adress" Grid.Row="0"  Margin="467,10,213,23.4" SelectionChanged="cbBranch_Selected" Width="120"/>
+        <TextBlock x:Name="tbBranch" Grid.Row="0" Margin="473,11,281,24.4"><Run Text="Филиал"/></TextBlock>
+        <Button Click="CategorySortReset" HorizontalAlignment="Left" Height="18" Margin="776,11,0,0" VerticalAlignment="Top" Width="20" Background="Transparent" BorderBrush="Transparent">
+            <Image Source="/images/reset.png" Height="15"/>
+            <Button.ToolTip>
+                <ToolTip>
+                    Сброс фильтров
+                </ToolTip>
+            </Button.ToolTip>
+
+        </Button>
+        <ComboBox Background="White" x:Name="cbJob" DisplayMemberPath="Name" Grid.Row="0"  Margin="330,9,350,23.4" SelectionChanged="cbJob_Selected" Width="120"/>
+        <TextBlock x:Name="tbJob" Grid.Row="0" Margin="336,11,398,24.4"><Run Text="Должность"/></TextBlock>
+
+        <Button x:Name="Excel1" Height="30" Width="120" Content="Отчет" Click="Excel1_Click" Margin="678,265.6,2,45.2" Grid.Row="1">
+            <Button.ToolTip>
+                <ToolTip>
+                    Оформить отчет о кол-ве выполненых заказов 
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+        <Button Height="30" Width="120" Click="add_click" Margin="678,300.6,2,10.2" Grid.Row="1">Добавить
+            <Button.ToolTip>
+                <ToolTip>
+                    Добавить запись о новом сотруднике
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <StackPanel Orientation="Horizontal" Height="35" Grid.Row="2">
+            <Button Width="25" Height="30" Click="GoToFirstPage" Content="&lt;&lt;">
+                <Button.ToolTip>
+                    <ToolTip>
+                        Первая страница
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button Width="25" Height="30" Click="GoToPreviousPage" Content="&lt;">
+                <Button.ToolTip>
+                    <ToolTip>
+                        Предыдущая страница
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <TextBox Name="TxtCurrentPage" Height="30" Width="27" Margin="0,3,0,2.2">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        Текущая страница
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
+            <Label x:Name="LblTotalPages" Height="30" Content=""/>
+            <Button Width="25" Height="30" Click="GoToNextPage" Content="&gt;">
+                <Button.ToolTip>
+                    <ToolTip>
+                        Следующая страница
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button Width="25" Height="30" Click="GoToLastPage" Content="&gt;&gt;">
+                <Button.ToolTip>
+                    <ToolTip>
+                        Последняя страница
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

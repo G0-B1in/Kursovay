@@ -1,0 +1,24 @@
+﻿<Window x:Class="доставка.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:доставка"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="518" Width="800" Icon="/images/иконка.png">
+    <Grid Background="#a79a92">
+        <Image Source="/images/фон.jpg" Margin="-137,0,-140.4,-126.2" />
+        <Border Background="#a79a92" Opacity="0.91" VerticalAlignment="Center" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="1" Height="350" Margin="204,85,219.6,58" Width="270">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="350" Margin="9.2,-0.8,9.6,-1" Width="250">
+                <Image Source="/images/logo.png" Width="150" Margin="10"/>
+                <TextBlock HorizontalAlignment="Center" Margin="54.4,9.2,54.4,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Пользователь:"/>
+                <ComboBox IsEditable="True" Name="cbuser" SelectionChanged="cbuser_SelectionChanged" DisplayMemberPath="name"></ComboBox>
+                <TextBlock HorizontalAlignment="Center" Margin="54.4,9.2,54.4,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Филиал:"/>
+                <ComboBox IsEditable="True" Name="cbbranch" DisplayMemberPath="Adress" IsEnabled="False" SelectionChanged="cbbranch_SelectionChanged"></ComboBox>
+                <TextBlock  HorizontalAlignment="Center" Margin="54.4,20,54.4,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Паролоь:"/>
+                <PasswordBox x:Name="tbPassword"></PasswordBox>
+                <Button Content="Войти" x:Name="singin" Width="100" Height="25" Margin="0,20,0,20" Click="singin_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

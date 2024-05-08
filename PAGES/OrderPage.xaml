@@ -1,0 +1,143 @@
+﻿<Page x:Class="доставка.PAGES.OrderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:доставка.PAGES"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="OrderPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="53*"></RowDefinition>
+            <RowDefinition Height="333*"></RowDefinition>
+            <RowDefinition Height="53*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Стоимость от:" Grid.Row="0" Margin="551,13,173,22.4"/>
+        <TextBox x:Name="seek" Grid.Row="0" TextChanged="TextBox_TextChanged" Margin="634,11,58,24.4">
+            <TextBox.ToolTip>
+                <ToolTip>
+                    Минимальная стоимость заказа 
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Button Click="CategorySortReset" HorizontalAlignment="Left" Height="18" Margin="776,11,0,0" VerticalAlignment="Top" Width="20" Background="Transparent" BorderBrush="Transparent">
+            <Image Source="/images/reset.png" Height="15"/>
+            <Button.ToolTip>
+                <ToolTip>
+                    Сброс фильтров
+                </ToolTip>
+            </Button.ToolTip>
+
+        </Button>
+        <CheckBox Name="cbdone" Checked="cbdone_Checked" Unchecked="cbdone_Unchecked" Content="Готовые" HorizontalAlignment="Left" Margin="471,14,0,0" VerticalAlignment="Top"/>
+
+
+        <DataGrid Background="#fff6f1" RowBackground="#fff6f1" MaxWidth="670" x:Name="dgpizza"  IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="auto" Margin="-1,27.6,127,0.2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="№" Binding="{Binding ID_Order}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата" Binding="{Binding Date}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Клиент" Binding="{Binding Client.FullName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Стоимость" Binding="{Binding NewPrice, StringFormat={} {0:F0} ₽}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Способ оплаты" Binding="{Binding PaymentMethod.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Статус" Binding="{Binding OrderStatus.Name}"></DataGridTextColumn>
+                <DataGridTemplateColumn Width="15">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="15" Name="btnEdit" Click="btnEdit_Click" Background="Transparent" BorderBrush="Transparent">
+                                <Image Source="/images/лупа.png" Height="15"/>
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Подробнее/Изменить запись
+                                    </ToolTip>
+                                </Button.ToolTip>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="15">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="15" Name="btnDelete" Click="btnDelete_Click" Background="Transparent" BorderBrush="Transparent">
+                                <Image Source="/images/крестик.png" Height="15"/>
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Удалить запись
+                                    </ToolTip>
+                                </Button.ToolTip>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="55">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="50" Click="Word_Click">Чек</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Height="30" Width="120" x:Name="btnExcel" Click="Excel_Click" Content="Отчет" Margin="678,265.6,2,45.2" Grid.Row="1">
+            <Button.ToolTip>
+                <ToolTip>
+                    Оформить отчет о кол-ве выполненых заказов
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+        <Button Height="30" Width="120" Click="add_click" Margin="678,300.6,2,10.2" Grid.Row="1">Добавить
+            <Button.ToolTip>
+                <ToolTip>
+                    Добавить запись о новом заказе
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <StackPanel Orientation="Horizontal" Height="35" Grid.Row="2">
+            <Button Width="25" Height="30" Click="GoToFirstPage" Content="&lt;&lt;">
+                <Button.ToolTip>
+                    <ToolTip>
+                        Первая страница
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button Width="25" Height="30" Click="GoToPreviousPage" Content="&lt;">
+                <Button.ToolTip>
+                    <ToolTip>
+                        Предыдущая страница
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <TextBox Name="TxtCurrentPage" Height="30" Width="27" Margin="0,3,0,2.2">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        Текущая страница
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
+            <Label x:Name="LblTotalPages" Height="30" Content=""/>
+            <Button Width="25" Height="30" Click="GoToNextPage" Content="&gt;">
+                <Button.ToolTip>
+                    <ToolTip>
+                        Следующая страница
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button Width="25" Height="30" Click="GoToLastPage" Content="&gt;&gt;">
+                <Button.ToolTip>
+                    <ToolTip>
+                        Последняя страница
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+        </StackPanel>
+        <DatePicker Name="datestart" SelectedDateChanged="datestart_SelectedDateChanged" HorizontalAlignment="Left" Margin="692,54.6,0,0" VerticalAlignment="Top" Height="25" Width="106" Grid.Row="1"></DatePicker>
+        <DatePicker Name="dateend" SelectedDateChanged="dateend_SelectedDateChanged" HorizontalAlignment="Left" Margin="692,106.6,0,0" VerticalAlignment="Top" Height="24" Width="106" Grid.Row="1"/>
+        <TextBlock Grid.Row="1" Margin="677,30.6,30,291.2" Text="Начало периода"/>
+        <TextBlock Grid.Row="1" Margin="677,84.6,36,237.2" Text="Конец периода"/>
+    </Grid>
+</Page>
